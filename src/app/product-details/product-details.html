@@ -1,0 +1,25 @@
+<div class="product" >
+    <div class="product-details">
+        <!-- <img src="{{'/assets/images/robot-parts/' + product.imageName}}" [alt]="product.name" /> -->
+        <img [src]="getImageUrl(product)" [alt]="product.name" />
+        <div class="product-info">
+            <div class="name red">{{product.name}}</div>
+            <div class="description">{{product.description}}</div>
+            <div class="category">Part Type: {{product.category}}</div>
+        </div>
+    </div>
+
+    <div class="price">
+        <!-- @if(product.discount === 0) { -->
+        <div [ngClass]="{strikethrough: product.discount > 0}">${{product.price.toFixed(2)}}</div>
+        <!-- ngIf is deprecated -->
+        <!-- }
+                    @else { -->
+        @if(product.discount > 0) {
+        <div class="discount">${{ (product.price * product.discount + product.price).toFixed(2)}}</div>
+        }
+        <!-- } -->
+
+        <button class="cta" (click)="buyButtonClicked(product)">Buy</button>
+    </div>
+</div>

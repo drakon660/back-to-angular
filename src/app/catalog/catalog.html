@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="filters">
+        <a routerLink="/catalog/heads" class="button bold" >Heads</a>
+        <a routerLink="/catalog/torsos" class="button" >Torsos</a>
+        <a routerLink="/catalog/arms" class="button" >Arms</a>
+        <a routerLink="/catalog/bases" class="button" >Bases</a>
+        <a routerLink="/catalog" class="button" >All</a>
+    </div>
+
+    <ul class="products">
+        @for(product of filteredProducts$ | async; track product.id) { <!-- ngfor is deprecated -->
+        <li class="product-item">
+          <app-product-details [product]="product" (buyEvent)="add(product)" productType="'robot-parts'"></app-product-details>
+        </li>
+        }
+    </ul>
+</div>

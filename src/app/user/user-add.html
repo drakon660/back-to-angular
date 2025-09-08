@@ -1,0 +1,6 @@
+<div>user</div>
+
+<form (ngSubmit)="updateName()" #userForm="ngForm">
+  <input type="text" [(ngModel)]="user.firstName" name="firstName" />
+  <button type="submit">Save</button>
+</form>

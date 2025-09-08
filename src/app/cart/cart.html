@@ -1,0 +1,41 @@
+<div class="container">
+  <h1 class="header">Your Cart</h1>
+
+  @if (cartItems.length === 0) {
+    <div class="empty-cart">
+      You have no items in your cart
+    </div>
+  }  
+  @if (cartItems.length > 0) {
+    <ul class="cart">
+      @for (cartItem of cartItems; track cartItem.product.id) {
+        <li class="cart-item">
+          <div class="product">
+            <div class="product-details">
+              <img [src]="getImageUrl(cartItem.product)" [alt]="cartItem.product.name" />
+              <div class="product-info">
+                <div class="name">{{ cartItem.product.name }}</div>
+                <div class="description">{{ cartItem.product.description }}</div>
+                <div class="category">Part Type: {{ cartItem.product.category }}</div>
+                <div class="quantity">Quantity: {{cartItem.quantity}}</div>
+                <div class="total">Total: {{cartItem.total}}</div>
+              </div>
+            </div>
+           
+            <div class="price">
+              <div [ngClass]="{ strikethrough: cartItem.product.discount > 0 }">
+                {{ cartItem.product.price | currency : "USD" }}
+              </div>
+              @if (cartItem.product.discount > 0) {
+                <div class="discount">
+                  {{ cartItem.product.price * (1 - cartItem.product.discount) | currency : "USD" }}
+                </div>
+              }
+              <button (click)="removeFromCart(cartItem.product)">Remove</button>
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
+  }    <div class="total">Total: {{ cartTotal | currency }}</div>
+</div>

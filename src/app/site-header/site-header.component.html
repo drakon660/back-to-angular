@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="left">
+    <img class="logo" src="/assets/images/logo.png" alt="Logo" />
+    <a routerLink="home">Home</a>
+    <a routerLink="catalog">Catalog</a>
+    <a routerLink="sign-in">LogIn</a>
+    <button (click)="signOut()">LogOut</button>
+    <a routerLink="/search" routerLinkActive="active">Search</a>
+    <div class="cart">
+      <a routerLink="cart">Cart</a>
+    </div>
+    <a (click)="download()">Download</a>
+    <a href="http://localhost:5042/api/download/download-file">Downloads</a>
+    <a (click)="abortDownload()">Cancel</a>
+  </div>
+  <div class="right">
+    <a routerLink="/cart" routerLinkActive="active">Bot Squad</a>
+    <a routerLink="/squad">Squad Roster</a>
+  </div>
+  <ng-container *ngIf="user | async as user; else notAuthenticated">
+    <!-- Authenticated user menu -->
+    <div class="user-menu">
+      <a routerLink="/profile" class="nav-link">Profile</a>
+      <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+    </div>
+  </ng-container>
+
+  <ng-template #notAuthenticated>
+    <!-- Not authenticated menu -->
+    <div class="auth-menu">
+      <a routerLink="/sign-in" class="nav-link">No Authenticated</a>
+    </div>
+  </ng-template>
+</div>

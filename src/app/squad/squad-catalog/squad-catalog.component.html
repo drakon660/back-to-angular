@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="title">Hire an expert from our Bot Squad!</div>
+  <div class="subtitle">Prices listed are per hour.</div>
+  <ul class="products">
+    @for(engineer of squad | async ; track engineer.id) {
+    <li class="product-item">
+      <app-product-details [product]="engineer" [productType]="'profile-images'" (buyEvent)="addToCart(engineer)">
+      </app-product-details>
+    </li>
+    }
+  </ul>
+</div>
